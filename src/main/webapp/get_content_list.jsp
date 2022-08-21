@@ -23,7 +23,7 @@
 	
 	//sql 문 작성
 	String sql = "select a1.content_subject, a2.user_nick_name as content_nick_name, "
-				+ "date_format(a1.content_write_date, '%Y-%m-%d') as content_write_date, a1.content_idx "
+				+ "date_format(a1.content_write_date, '%Y-%m-%d %H:%i:%s') as content_write_date, a1.content_idx "
 				+ "from content_table a1, user_table a2 "
 				+ "where a1.content_writer_idx = a2.user_idx ";
 	

@@ -24,7 +24,7 @@
 	
 	//sql 문 작성
 	String sql = "select a1.content_subject, a2.user_nick_name as content_nick_name, "
-			+ "date_format(a1.content_write_date, '%Y-%m-%d') as content_write_date, a1.content_text, a1.content_image "
+			+ "date_format(a1.content_write_date, '%Y-%m-%d %H:%i:%s') as content_write_date, a1.content_text, a1.content_image, a1.content_writer_idx "
 			+ "from content_table a1, user_table a2 "
 			+ "where a1.content_writer_idx = a2.user_idx "
 			+ "and content_idx = ?;";
@@ -46,6 +46,7 @@
 	String contentWriteDate = rs.getString("content_write_date");
 	String contentText = rs.getString("content_text");
 	String contentImage = rs.getString("content_image");
+	int contentWriterIdx = rs.getInt("content_writer_idx");
 	
 	//json object객체에 다시 세팅 
 	obj.put("content_subject", contentSubject);
@@ -53,6 +54,7 @@
 	obj.put("content_write_date", contentWriteDate);
 	obj.put("content_text", contentText);
 	obj.put("content_image", contentImage);
+	obj.put("content_writer_idx", contentWriterIdx);
 	
 	//접속 종료
 	conn.close();
