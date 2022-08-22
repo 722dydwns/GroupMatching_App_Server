@@ -10,6 +10,13 @@
 	String str1 = request.getParameter("content_board_idx");
 	int content_board_idx = Integer.parseInt(str1);
 	
+	//  -> 각 페이지별로 목록 구성할 것. page_num도 받을 것이디ㅏ.
+	String str2 = request.getParameter("page_num");
+	int page_num = Integer.parseInt(str2);
+	
+	int startIndex = (page_num -1) * 10; //각 목록 시작 idx 값 구함  
+	
+	
 	//DB 접속 정보 세팅
 	String dbUrl = "jdbc:mysql://localhost:3306/groupapp_db";
 	String dbId = "root";
@@ -33,14 +40,20 @@
 	if(content_board_idx != 0){ 
 		sql += "and a1.content_board_idx = ? "; //sql문 추가 
 	}
-	sql += "order by a1.content_idx desc;";
+	sql += "order by a1.content_idx desc limit ?, 10;"; // ?값에 시작 목록 번호 ~ 10개씩 데이터 가져옴
+			
+	
 	
 	//sql 실행
 	PreparedStatement pstmt = conn.prepareStatement(sql);
 	
-	if(content_board_idx != 0) {
+	if(content_board_idx != 0) { //전체 게시판일 경우 
 		pstmt.setInt(1, content_board_idx);
+		pstmt.setInt(2, startIndex);
+	}else {
+		pstmt.setInt(1, startIndex);
 	}
+	
 	//응답 결과 세팅
 	ResultSet rs = pstmt.executeQuery();
 	

@@ -42,7 +42,7 @@
 	//쿼리문 작성 - 게시글목록/작성자idx/글제목/글내용
 	String sql = "insert into content_table "
 				+ "(content_board_idx, content_writer_idx, content_subject, content_text, content_image) values (?, ?, ?, ?, ?)";
-	
+
 	//쿼리 실행 
 	PreparedStatement pstmt = conn.prepareStatement(sql);
 	
@@ -52,7 +52,7 @@
 	pstmt.setString(4, content_text);
 	pstmt.setString(5, content_image);
 	
-	pstmt.execute();//실행 
+	pstmt.execute();//실행 	
 	
 	//현재 작성한 게시글 idx 값을 응답 결과로 보내준다.
 	//현재의 게시글 목록 idx 중에서 가장 content_idx 가 큰 애를 가져옴 (최근 작성 순)
