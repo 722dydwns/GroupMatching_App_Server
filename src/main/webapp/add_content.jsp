@@ -25,6 +25,9 @@
 	String content_subject = multi.getParameter("content_subject");
 	String content_text = multi.getParameter("content_text");
 	
+	System.out.println(content_subject);
+	System.out.println(content_text);
+	
 	//이미지 데이터 
 	String content_image = multi.getFilesystemName("content_image"); 
 	

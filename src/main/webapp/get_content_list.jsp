@@ -70,6 +70,7 @@
 		obj.put("content_nick_name", contentNickName);
 		obj.put("content_write_date", contentWriteDate);
 		obj.put("content_subject", contentSubject);
+
 		
 		root.add(obj); //JSON 배엵객체에 최종 add 처리 
 	}

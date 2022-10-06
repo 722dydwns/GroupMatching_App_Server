@@ -13,7 +13,8 @@
 	//중복된 이름에 대한 정책 객체 
 	DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy();
 	//Request 이미지 담을 multiRequest
-	MultipartRequest multi = new MultipartRequest(request, uploadPath, 100*1024*1024, policy);
+	//MultipartRequest multi = new MultipartRequest(request, uploadPath, 100*1024*1024, policy);
+	MultipartRequest multi = new MultipartRequest(request, uploadPath, 100*1024*1024, "utf-8", policy);
 		
 	//클라이언트가 보낸 데이터 추출 
 	// 수정할 글 번호 idx값 추출
@@ -26,6 +27,11 @@
 	String contentImage = multi.getFilesystemName("content_image"); //첨부 이미지 
 	String str2 = multi.getParameter("content_board_idx"); //게시글 목록 idx
 	int contentBoardIdx = Integer.parseInt(str2);
+	
+	System.out.println(contentSubject);
+	System.out.println(contentText);
+	
+	
 
 	//DB 접속 정보 세팅
 	String dbUrl = "jdbc:mysql://localhost:3306/groupapp_db";
