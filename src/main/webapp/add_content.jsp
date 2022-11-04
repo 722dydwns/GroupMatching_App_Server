@@ -13,7 +13,7 @@
 	
 	//파일 업로드 처리 
 	DefaultFileRenamePolicy policy = new DefaultFileRenamePolicy(); //중복된 파일이름 변경 정책 객체
-	MultipartRequest multi = new MultipartRequest(request, uploadPath, 100*1024*1024, "utf-8", policy);
+	MultipartRequest multi = new MultipartRequest(request, uploadPath, 1024*1024*1024, "utf-8", policy);
 
 	//클라이언트가 보낸 작성 게시글 관련 데이터 추출 [request -> multi 변경 ]
 	String str1= multi.getParameter("content_board_idx");
@@ -30,6 +30,7 @@
 	
 	//이미지 데이터 
 	String content_image = multi.getFilesystemName("content_image"); 
+	System.out.println(content_image);
 	
 	//DB 접속 정보 세팅
 	String dbUrl = "jdbc:mysql://localhost:3306/groupapp_db";
